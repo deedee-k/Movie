@@ -1,0 +1,357 @@
+/* === ROOT COLORS === */
+:root {
+  --bg: #0a0a10;
+  --card: #15151f;
+  --text: #f0f0ff;
+  --primary: #6c63ff; /* soft violet */
+  --accent: #009dff;  /* electric blue */
+  --danger: #ff4757;
+  --radius: 16px;
+  --border: #232334;
+  --shadow: 0 0 25px rgba(108, 99, 255, 0.2);
+  --transition: all 0.25s ease;
+}
+
+/* === GLOBAL === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+}
+
+/* === APP === */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  /* ensures footer stays bottom */
+}
+
+
+/* === NAVBAR === */
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(20, 20, 30, 0.8);
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.navbar h1 {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.7rem;
+  text-shadow: 0 0 10px rgba(108, 99, 255, 0.6);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--text);
+  font-weight: 500;
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav-links button:hover {
+  background: var(--accent);
+  box-shadow: 0 0 15px var(--accent);
+  transform: translateY(-2px);
+}
+
+/* === MAIN CONTENT === */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* === MOVIE GRID === */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.movie-card {
+  position: relative;
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: var(--transition);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  filter: brightness(0.9);
+  transition: var(--transition);
+}
+
+.movie-card:hover img {
+  filter: brightness(1);
+  transform: scale(1.05);
+}
+
+.movie-card h4 {
+  margin: 0.8rem;
+  font-size: 1.1rem;
+}
+
+.movie-card p {
+  margin: 0 0.8rem;
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.movie-card a {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(108, 99, 255, 0);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  opacity: 0;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.movie-card:hover a {
+  background: rgba(108, 99, 255, 0.7);
+  opacity: 1;
+}
+
+/* === MOVIE DETAILS LAYOUT === */
+.movie-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.movie-detail img {
+  width: 280px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.movie-info {
+  flex: 1;
+  max-width: 600px;
+}
+
+.movie-info h2 {
+  color: var(--primary);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(108, 99, 255, 0.4);
+}
+
+.movie-info p {
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+.rating {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* === REVIEW SECTION === */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  margin-top: 1rem;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.review-text {
+  margin-top: 0.4rem;
+  opacity: 0.9;
+}
+
+button.danger {
+  background: var(--danger);
+  padding: 0.4rem 0.8rem;
+  color: #fff;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: var(--transition);
+}
+
+button.danger:hover {
+  background: #b0212b;
+  transform: translateY(-2px);
+}
+
+/* === FORMS === */
+form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+textarea, input {
+  width: 100%;
+  max-width: 600px;
+  padding: 0.8rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  outline: none;
+  background: #1b1b28;
+  color: var(--text);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+textarea:focus, input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(0, 157, 255, 0.4);
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+  box-shadow: 0 0 15px rgba(108, 99, 255, 0.3);
+}
+
+button:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--accent);
+}
+
+/* === FOOTER === */
+/* === FOOTER (compact version) === */
+.footer {
+  background: #0b0b13;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 0.6rem 1rem;        /* smaller height */
+  font-size: 0.85rem;          /* smaller text */
+  color: #888;
+  opacity: 0.85;
+  margin-top: auto;            /* keeps it pushed to the bottom */
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.footer:hover {
+  opacity: 1;
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent);
+  transition: var(--transition);
+}
+
+
+/* === ANIMATION === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .movie-detail {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .movie-info {
+    text-align: center;
+  }
+
+  .movie-card img {
+    height: 280px;
+  }
+}
